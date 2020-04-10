@@ -41,6 +41,7 @@ class MainWindow(QMainWindow, formMain):
     def chatOpen(self):
         # cw = ChatWindow(self)
         # cw.exec_()
+        #QDialog로 바꿔야함
         ChatWindow(self)
 
     def connectConsole(self):
