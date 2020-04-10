@@ -15,10 +15,10 @@ from MainClientSocket import ClientSocket
 CWD = str(os.getcwd())
 # print(CWD)
 
-formMain = uic.loadUiType("ui/ChatWindow.ui")[0]
+# formMain = uic.loadUiType("ui/ChatWindow.ui")[0]
 
 
-class ChatWindow(QWidget, formMain):
+class ChatWindow(QWidget):
 
     Client = None
     CLIENT_SOCKET = None
@@ -54,10 +54,10 @@ class ChatWindow(QWidget, formMain):
         self.chat_txt.setText('')
 
     def buttonUi(self):
-        self.chat_client_start.clicked.connect(self.clientStart)
-        self.chat_client_stop.clicked.connect(self.clientStop)
+        self.btn_client_start.clicked.connect(self.clientStart)
+        self.btn_client_stop.clicked.connect(self.clientStop)
         self.chat_btn.clicked.connect(self.sendMessage)
-        self.chat_btn.returnPressed.connect(self.sendMessage)
+        self.chat_txt.returnPressed.connect(self.sendMessage)
 
 
 if __name__ == "__main__":

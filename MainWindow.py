@@ -29,17 +29,19 @@ class MainWindow(QMainWindow, formMain):
         self.buttonUi()
         self.initUI()
 
-    # 미사용
+    """
     def connectWindow(self):
         Dig = DialogWindow(self)
         self.btn_connect.setEnabled(False)
         Dig.exec_()
         self.chatWrite('connect active...')
         self.btn_connect.setEnabled(True)
+    """
 
     def chatOpen(self):
-        cw = ChatWindow(self)
-        cw.exec_()
+        # cw = ChatWindow(self)
+        # cw.exec_()
+        ChatWindow(self)
 
     def connectConsole(self):
         IP = self.txt_ip.text()
