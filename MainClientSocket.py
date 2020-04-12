@@ -23,11 +23,18 @@ class ClientSocket(QtCore.QThread):
     def recvStart(self):
 
         while True:
-            data = self.PRT.CLIENT_SOCKET.recv(1024)
+            try:
+                data = self.PRT.CLIENT_SOCKET.recv(1024)
 
-            self.textWrite('Received '+ repr(data.decode()))
+                self.textWrite('Received '+ repr(data.decode()))
 
-            if data == 'Quit':
+                if data == 'Quit':
+                    break
+            except ConnectionResetError as e:
+                self.textWrite('Disconnected by ConnectionResetError')
+                break
+            except ConnectionAbortedError as e:
+                self.textWrite('Disconnected by ConnectionAbortedError')
                 break
 
         self.PRT.CLIENT_SOCKET.close()

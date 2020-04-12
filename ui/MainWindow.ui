@@ -49,7 +49,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>192.168.0.6</string>
+      <string>192.168.35.170</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="txt_port">
@@ -167,29 +167,42 @@
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>150</y>
+       <y>180</y>
        <width>56</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>CPU</string>
+      <string>OS</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>190</y>
+       <y>290</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CPU 종류</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>350</y>
        <width>56</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>RAM</string>
+      <string>CPU 갯수</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -199,23 +212,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>DISK</string>
+      <string>운영체제</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>270</y>
-       <width>56</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Network</string>
-     </property>
-    </widget>
-    <widget class="QLCDNumber" name="lcdNumber">
+    <widget class="QLCDNumber" name="lcd_cpu">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -225,7 +225,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLCDNumber" name="lcdNumber_2">
+    <widget class="QLCDNumber" name="lcd_ram">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -235,7 +235,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLCDNumber" name="lcdNumber_3">
+    <widget class="QLCDNumber" name="lcd_disk">
      <property name="geometry">
       <rect>
        <x>280</x>
@@ -245,7 +245,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLCDNumber" name="lcdNumber_4">
+    <widget class="QLCDNumber" name="lcd_network">
      <property name="geometry">
       <rect>
        <x>390</x>
@@ -259,9 +259,9 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>130</y>
+       <y>150</y>
        <width>461</width>
-       <height>191</height>
+       <height>261</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -272,15 +272,155 @@ border-radius: 10px;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="mnt_btn_start">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>432</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>시 작</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>30</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CPU</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>30</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RAM</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>30</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DISK</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>30</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>NETWORK</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="mnt_btn_stop">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>430</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>정 지</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mnt_label1">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>180</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mnt_label2">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>230</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mnt_label3">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>290</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mnt_label4">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>350</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <zorder>label_2</zorder>
     <zorder>label_3</zorder>
     <zorder>label_4</zorder>
     <zorder>label_5</zorder>
     <zorder>label_6</zorder>
-    <zorder>lcdNumber</zorder>
-    <zorder>lcdNumber_2</zorder>
-    <zorder>lcdNumber_3</zorder>
-    <zorder>lcdNumber_4</zorder>
+    <zorder>lcd_cpu</zorder>
+    <zorder>lcd_ram</zorder>
+    <zorder>lcd_disk</zorder>
+    <zorder>lcd_network</zorder>
+    <zorder>mnt_btn_start</zorder>
+    <zorder>label_13</zorder>
+    <zorder>label_14</zorder>
+    <zorder>label_15</zorder>
+    <zorder>label_16</zorder>
+    <zorder>mnt_btn_stop</zorder>
+    <zorder>mnt_label1</zorder>
+    <zorder>mnt_label2</zorder>
+    <zorder>mnt_label3</zorder>
+    <zorder>mnt_label4</zorder>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
@@ -320,13 +460,13 @@ border-radius: 10px;</string>
     <property name="title">
      <string>Database</string>
     </property>
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="db_label">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>60</y>
-       <width>91</width>
-       <height>21</height>
+       <x>20</x>
+       <y>30</y>
+       <width>481</width>
+       <height>181</height>
       </rect>
      </property>
      <property name="text">

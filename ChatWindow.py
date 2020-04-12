@@ -18,7 +18,7 @@ CWD = str(os.getcwd())
 # formMain = uic.loadUiType("ui/ChatWindow.ui")[0]
 
 
-class ChatWindow(QWidget):
+class ChatWindow(QDialog):
 
     Client = None
     CLIENT_SOCKET = None
@@ -26,21 +26,21 @@ class ChatWindow(QWidget):
     def __init__(self, parent):
         super(ChatWindow, self).__init__(parent)
         self.PRT = parent
-        ui = 'ui/ChatWindow.ui'
+        ui = 'ui/ChatDialog.ui'
         uic.loadUi(ui, self)
         self.buttonUi()
         self.show()
 
     def textWrite(self, text):
-        self.chat_textedit.appendPlainText(text)
+        self.chat_textedit.append(text)
 
     def clientStart(self):
         HOST = self.txt_ip.text()
         PORT = self.txt_port.text()
 
         self.CLIENT_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.CLIENT_SOCKET.connect((HOST, PORT))
-        self.textWrite('========= client start-' + self.HOST + ':' + self.PORT)
+        self.CLIENT_SOCKET.connect((HOST, int(PORT)))
+        self.textWrite('========= client start-' + HOST + ':' + PORT)
 
         self.Client = ClientSocket(self)
         self.Client.start()
@@ -49,6 +49,9 @@ class ChatWindow(QWidget):
         self.CLIENT_SOCKET.close()
 
     def sendMessage(self):
+        if( self.CLIENT_SOCKET == None ):
+            self.clientStart()
+
         MSG = self.chat_txt.text()
         self.CLIENT_SOCKET.send(MSG.encode())
         self.chat_txt.setText('')
