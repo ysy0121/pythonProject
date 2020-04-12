@@ -38,12 +38,15 @@ class ChatWindow(QDialog):
         HOST = self.txt_ip.text()
         PORT = self.txt_port.text()
 
-        self.CLIENT_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.CLIENT_SOCKET.connect((HOST, int(PORT)))
-        self.textWrite('========= client start-' + HOST + ':' + PORT)
+        try:
+            self.CLIENT_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.CLIENT_SOCKET.connect((HOST, int(PORT)))
+            self.textWrite('========= client start-' + HOST + ':' + PORT)
 
-        self.Client = ClientSocket(self)
-        self.Client.start()
+            self.Client = ClientSocket(self)
+            self.Client.start()
+        except:
+            pass
 
     def clientStop(self):
         self.CLIENT_SOCKET.close()
@@ -53,7 +56,11 @@ class ChatWindow(QDialog):
             self.clientStart()
 
         MSG = self.chat_txt.text()
-        self.CLIENT_SOCKET.send(MSG.encode())
+        try:
+            self.CLIENT_SOCKET.send(MSG.encode())
+        except:
+            pass
+
         self.chat_txt.setText('')
 
     def buttonUi(self):

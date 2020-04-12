@@ -48,7 +48,7 @@ class ServerSocket(QtCore.QThread):
                     self.textWrite('Server Disconnected by ' + str(addr[0]) + ', ' + str(addr[1]))
                     break
 
-            except ConnectionResetError as e:
+            except:
                 self.textWrite('Disconnected by ' + str(addr[0]) + ', ' + str(addr[1]))
                 self.SERVER_FLAG = False
                 break
@@ -62,19 +62,25 @@ class ServerSocket(QtCore.QThread):
         # self.setServerInfo()
         self.textWrite('######### server info-' + self.SERVER_IP + ':' + self.SERVER_PORT)
 
-        self.SERVER_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
-        self.SERVER_SOCKET.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        # self.SERVER_SOCKET.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        self.SERVER_SOCKET.bind((self.SERVER_IP, int(self.SERVER_PORT)))
-        self.SERVER_SOCKET.listen()
+        try:
+            self.SERVER_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+            self.SERVER_SOCKET.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            # self.SERVER_SOCKET.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            self.SERVER_SOCKET.bind((self.SERVER_IP, int(self.SERVER_PORT)))
+            self.SERVER_SOCKET.listen()
+        except:
+            pass
 
         self.textWrite('######### server start...')
 
         while self.SERVER_FLAG:
-            self.textWrite('######### client waiting...')
-            client_socket, addr = self.SERVER_SOCKET.accept()
-            self.SOCKETS.append(client_socket)
-            start_new_thread(self.conn_thread, (client_socket, addr))
+            try:
+                self.textWrite('######### client waiting...')
+                client_socket, addr = self.SERVER_SOCKET.accept()
+                self.SOCKETS.append(client_socket)
+                start_new_thread(self.conn_thread, (client_socket, addr))
+            except:
+                self.SERVER_SOCKET.close()
 
         self.SERVER_SOCKET.close()
         self.textWrite('######### server stop...')

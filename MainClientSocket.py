@@ -30,11 +30,7 @@ class ClientSocket(QtCore.QThread):
 
                 if data == 'Quit':
                     break
-            except ConnectionResetError as e:
-                self.textWrite('Disconnected by ConnectionResetError')
-                break
-            except ConnectionAbortedError as e:
-                self.textWrite('Disconnected by ConnectionAbortedError')
+            except:
                 break
 
         self.PRT.CLIENT_SOCKET.close()
